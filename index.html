@@ -181,31 +181,32 @@
       justify-content: center;
       align-items: center;
       max-width: 420px;
+      min-height: 170px;
       margin-left: auto;
       margin-right: auto;
     }
 
     .hero-dino {
       position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-165%, -50%) scale(0.95);
+      left: 8px;
+      top: 56%;
+      transform: translate(0, -50%) scale(0.82);
       display: flex;
       justify-content: center;
       align-items: center;
       animation: floatSoft 4.8s ease-in-out infinite;
-      opacity: 0.55;
+      opacity: 0.38;
       z-index: 0;
       pointer-events: none;
     }
 
     .hero-dino img {
       width: 100%;
-      max-width: 110px;
+      max-width: 95px;
       height: auto;
       display: block;
       object-fit: contain;
-      filter: drop-shadow(0 6px 12px rgba(106,105,88,.06));
+      filter: drop-shadow(0 4px 10px rgba(106,105,88,.04));
     }
 
     .hero-copy {
@@ -375,9 +376,9 @@
     .parking,
     .rsvp,
     .closing {
-      margin-top: 30px;
-      margin-bottom: 8px;
-      max-width: 330px;
+      margin-top: 22px;
+      margin-bottom: 0;
+      max-width: 360px;
       text-align: center;
     }
 
@@ -455,13 +456,13 @@
     }
 
     .rsvp a {
-      display: grid;
-      grid-template-columns: 26px 1fr;
+      position: relative;
+      display: flex;
       align-items: center;
       justify-content: center;
-      column-gap: 14px;
       width: 100%;
-      padding: 18px 22px;
+      min-height: 96px;
+      padding: 18px 24px;
       border: 2px dashed rgba(177,188,155,.82);
       border-radius: 18px;
       color: var(--accent);
@@ -469,7 +470,7 @@
       font-style: italic;
       font-weight: 700;
       font-size: 1.02rem;
-      line-height: 1.45;
+      line-height: 1.35;
       background: rgba(255,255,255,.28);
       transition: transform .25s ease, background .25s ease;
       animation: pulseGlow 3.8s ease-in-out infinite;
@@ -481,37 +482,52 @@
       background: rgba(255,255,255,.42);
     }
 
+    .rsvp a svg {
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      flex: 0 0 auto;
+    }
+
+    .rsvp a span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0 28px;
+    }
+
     .closing {
       margin-top: 24px;
     }
 
     .closing-text {
       font-size: 1.02rem;
-      line-height: 1.4;
+      line-height: 1.42;
       font-style: italic;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .signature-lead {
       color: var(--text);
       font-size: .98rem;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .signature-name {
       color: var(--accent);
-      font-size: clamp(2.2rem, 6vw, 2.95rem);
-      line-height: 1.05;
+      font-size: clamp(2rem, 5.5vw, 2.55rem);
+      line-height: 1.02;
       font-family: "Snell Roundhand", "Brush Script MT", "Segoe Script", "Apple Chancery", cursive;
       letter-spacing: .01em;
-      margin-bottom: 14px;
+      margin-bottom: 4px;
     }
 
     .bottom-scene {
       position: relative;
-      height: 232px;
-      margin-top: 0;
+      height: 178px;
+      margin-top: 2px;
       display: flex;
       align-items: end;
       justify-content: center;
@@ -542,16 +558,18 @@
 
       .hero {
         max-width: 100%;
-        min-height: 150px;
+        min-height: 148px;
       }
 
       .hero-dino {
-        transform: translate(-145%, -50%) scale(0.82);
-        opacity: 0.42;
+        left: 0;
+        top: 58%;
+        transform: translate(0, -50%) scale(0.72);
+        opacity: 0.32;
       }
 
       .hero-dino img {
-        max-width: 92px;
+        max-width: 84px;
       }
 
       .title-name {
@@ -609,15 +627,39 @@
       }
 
       .rsvp a {
-        padding: 16px 16px;
+        min-height: 88px;
+        padding: 16px 14px;
         font-size: .98rem;
-        grid-template-columns: 24px 1fr;
-        column-gap: 12px;
         text-align: center;
       }
 
+      .rsvp a svg {
+        left: 18px;
+      }
+
+      .rsvp a span {
+        padding: 0 22px;
+      }
+
+      .signature-name {
+        font-size: clamp(1.9rem, 7.8vw, 2.35rem);
+      }
+
       .bottom-scene {
-        height: 205px;
+        height: 150px;
+      }
+    }
+
+    @media (min-width: 391px) and (max-width: 520px) {
+      .hero-dino {
+        left: 6px;
+        top: 57%;
+        transform: translate(0, -50%) scale(0.76);
+        opacity: 0.35;
+      }
+
+      .hero-dino img {
+        max-width: 90px;
       }
     }
 
