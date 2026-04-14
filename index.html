@@ -117,9 +117,11 @@
     }
 
     .wrap {
-      position: relative;
-      z-index: 2;
-      padding: 18px 26px 34px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .fade-up {
@@ -376,14 +378,11 @@
     .parking,
     .rsvp,
     .closing {
-      margin-top: 24px;
-      margin-bottom: 0;
+      width: 100%;
       max-width: 360px;
+      margin: 22px auto 0;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: block;
     }
 
     .address-block {
@@ -401,11 +400,16 @@
       color: var(--muted);
       font-size: 0.96rem;
       line-height: 1.45;
+      width: 100%;
       max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .rsvp {
-      max-width: 400px;
+      width: 100%;
+      max-width: 360px;
+      margin: 24px auto 0;
     }
 
     .closing {
@@ -514,10 +518,9 @@
       line-height: 1.42;
       font-style: italic;
       color: var(--text);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-align: center;
-      width: 100%;
-      max-width: 320px;
+      max-width: 360px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -526,6 +529,7 @@
       color: var(--text);
       font-size: .98rem;
       margin-bottom: 6px;
+      text-align: center;
     }
 
     .signature-name {
@@ -534,8 +538,9 @@
       line-height: 1.02;
       font-family: "Snell Roundhand", "Brush Script MT", "Segoe Script", "Apple Chancery", cursive;
       letter-spacing: .01em;
-      margin-bottom: 4px;
+      margin: 0 auto 6px auto;
       text-align: center;
+      max-width: 360px;
       width: 100%;
       display: block;
     }
@@ -639,6 +644,7 @@
 
       .parking {
         grid-template-columns: 24px 1fr;
+        width: 100%;
         max-width: 320px;
       }
 
