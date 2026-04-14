@@ -189,7 +189,7 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      transform: translate(-140%, -50%) scale(0.95);
+      transform: translate(-165%, -50%) scale(0.95);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -375,8 +375,9 @@
     .parking,
     .rsvp,
     .closing {
-      margin-left: auto;
-      margin-right: auto;
+      margin-top: 30px;
+      margin-bottom: 8px;
+      max-width: 330px;
       text-align: center;
     }
 
@@ -472,7 +473,7 @@
       background: rgba(255,255,255,.28);
       transition: transform .25s ease, background .25s ease;
       animation: pulseGlow 3.8s ease-in-out infinite;
-      text-align: left;
+      text-align: center;
     }
 
     .rsvp a:hover {
@@ -495,21 +496,22 @@
     .signature-lead {
       color: var(--text);
       font-size: .98rem;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     .signature-name {
       color: var(--accent);
       font-size: clamp(2.2rem, 6vw, 2.95rem);
-      line-height: .98;
+      line-height: 1.05;
       font-family: "Snell Roundhand", "Brush Script MT", "Segoe Script", "Apple Chancery", cursive;
       letter-spacing: .01em;
+      margin-bottom: 14px;
     }
 
     .bottom-scene {
       position: relative;
-      height: 288px;
-      margin-top: 14px;
+      height: 232px;
+      margin-top: 0;
       display: flex;
       align-items: end;
       justify-content: center;
@@ -526,7 +528,7 @@
       opacity: 0;
     }
 
-    .footer-space { height: 14px; }
+    .footer-space { height: 4px; }
 
     @media (max-width: 390px) {
       .wrap {
@@ -544,7 +546,7 @@
       }
 
       .hero-dino {
-        transform: translate(-118%, -50%) scale(0.82);
+        transform: translate(-145%, -50%) scale(0.82);
         opacity: 0.42;
       }
 
@@ -611,10 +613,11 @@
         font-size: .98rem;
         grid-template-columns: 24px 1fr;
         column-gap: 12px;
+        text-align: center;
       }
 
       .bottom-scene {
-        height: 240px;
+        height: 205px;
       }
     }
 
