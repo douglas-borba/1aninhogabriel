@@ -188,21 +188,21 @@
 
     .hero-dino {
       position: absolute;
-      left: 8px;
+      left: -10px;
       top: 56%;
-      transform: translate(0, -50%) scale(0.82);
+      transform: translate(0, -50%) scale(0.9);
       display: flex;
       justify-content: center;
       align-items: center;
       animation: floatSoft 4.8s ease-in-out infinite;
-      opacity: 0.38;
+      opacity: 0.4;
       z-index: 0;
       pointer-events: none;
     }
 
     .hero-dino img {
       width: 100%;
-      max-width: 95px;
+      max-width: 108px;
       height: auto;
       display: block;
       object-fit: contain;
@@ -376,10 +376,13 @@
     .parking,
     .rsvp,
     .closing {
-      margin-top: 22px;
+      margin-top: 24px;
       margin-bottom: 0;
       max-width: 360px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .address-block {
@@ -462,7 +465,7 @@
       justify-content: center;
       width: 100%;
       min-height: 96px;
-      padding: 18px 24px;
+      padding: 18px 26px;
       border: 2px dashed rgba(177,188,155,.82);
       border-radius: 18px;
       color: var(--accent);
@@ -475,6 +478,7 @@
       transition: transform .25s ease, background .25s ease;
       animation: pulseGlow 3.8s ease-in-out infinite;
       text-align: center;
+      overflow: hidden;
     }
 
     .rsvp a:hover {
@@ -488,13 +492,16 @@
       top: 50%;
       transform: translateY(-50%);
       flex: 0 0 auto;
+      z-index: 1;
     }
 
     .rsvp a span {
       display: block;
       width: 100%;
+      max-width: 100%;
       text-align: center;
-      padding: 0 28px;
+      padding: 0 44px;
+      margin: 0 auto;
     }
 
     .closing {
@@ -562,14 +569,14 @@
       }
 
       .hero-dino {
-        left: 0;
+        left: -16px;
         top: 58%;
-        transform: translate(0, -50%) scale(0.72);
-        opacity: 0.32;
+        transform: translate(0, -50%) scale(0.8);
+        opacity: 0.34;
       }
 
       .hero-dino img {
-        max-width: 84px;
+        max-width: 98px;
       }
 
       .title-name {
@@ -638,7 +645,7 @@
       }
 
       .rsvp a span {
-        padding: 0 22px;
+        padding: 0 36px;
       }
 
       .signature-name {
@@ -647,6 +654,19 @@
 
       .bottom-scene {
         height: 150px;
+      }
+    }
+
+    @media (min-width: 391px) and (max-width: 520px) {
+      .hero-dino {
+        left: -12px;
+        top: 57%;
+        transform: translate(0, -50%) scale(0.84);
+        opacity: 0.36;
+      }
+
+      .hero-dino img {
+        max-width: 102px;
       }
     }
 
