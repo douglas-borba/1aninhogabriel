@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel faz 1 Aninho</title>
+
+  <style>
+    /* ============================================================
+       PALETA DE CORES — SEM EXCEÇÕES
+       #f7f3ef  creme         → fundo principal
+       #6a6958  verde-oliva   → textos corridos / fundo imagens
+       #b1bc9b  sage claro    → detalhes decorativos
+       #7a8e7f  sage médio    → títulos / botões
+       #847c7c  cinza-quente  → textos secundários
+    ============================================================ */
+
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── TIPOGRAFIA ─────────────────────────────────────── */
+    /* Display elegante: Georgia italic (disponível em todos os sistemas) */
+    /* Script assinatura: Brush Script MT ou fallback cursive do sistema */
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #f7f3ef;
+      color: #6a6958;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── DESKTOP: card centralizado ─────────────────────── */
+    .envelope {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #f7f3ef;
+      position: relative;
+    }
+    @media (min-width: 520px) {
+      body { background: #e8e4db; display: flex; justify-content: center; padding: 40px 0 60px; }
+      .envelope {
+        border-radius: 2px;
+        box-shadow: 0 24px 64px rgba(106,105,88,.22), 0 2px 8px rgba(0,0,0,.08);
+        overflow: hidden;
+      }
+    }
+
+    /* ============================================================
+       SEÇÃO BANDEIRAS
+       Fundo #6a6958 + mix-blend-mode:screen resolve o fundo
+       preto das imagens: pixels pretos → cor do fundo (invisíveis)
+       pixels coloridos → versão clara sobre o fundo escuro
+    ============================================================ */
+    .sec-bandeiras {
+      background: #6a6958;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+      padding-top: 4px;
+    }
+    .sec-bandeiras img {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      mix-blend-mode: screen;  /* fundo preto da imagem desaparece */
+      opacity: .95;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .sec-hero {
+      text-align: center;
+      padding: 44px 32px 36px;
+      animation: fadeUp .9s ease both;
+    }
+
+    /* Nome principal — display serif itálico grande */
+    .hero-name {
+      font-family: Georgia, 'Book Antiqua', 'Palatino Linotype', serif;
+      font-style: italic;
+      font-size: clamp(52px, 14vw, 76px);
+      font-weight: normal;
+      color: #7a8e7f;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    /* "faz" — texto menor entre nome e idade */
+    .hero-faz {
+      display: block;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: clamp(14px, 4vw, 18px);
+      color: #847c7c;
+      letter-spacing: 4px;
+      margin: 6px 0 4px;
+    }
+
+    /* "1 aninho!" */
+    .hero-age {
+      font-family: Georgia, 'Book Antiqua', serif;
+      font-style: italic;
+      font-size: clamp(36px, 10vw, 54px);
+      font-weight: normal;
+      color: #7a8e7f;
+      line-height: 1.1;
+    }
+
+    /* ── ORNAMENTO ───────────────────────────────────────── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .ornament-line {
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #b1bc9b, transparent);
+    }
+    .ornament-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #b1bc9b;
+    }
+    .ornament-dot.lg { width: 7px; height: 7px; }
+
+    /* ── TEXTO DESCRITIVO ────────────────────────────────── */
+    .hero-desc {
+      font-family: Georgia, serif;
+      font-size: clamp(14px, 3.8vw, 15.5px);
+      color: #847c7c;
+      line-height: 1.85;
+      font-style: italic;
+      padding: 0 8px;
+    }
+
+    /* ============================================================
+       SEÇÃO DETALHES
+    ============================================================ */
+    .sec-details {
+      padding: 0 22px;
+      animation: fadeUp .9s ease .15s both;
+    }
+
+    .details-card {
+      background: #fff;
+      border: 1px solid rgba(177,188,155,.45);
+      border-radius: 3px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 24px rgba(106,105,88,.10);
+    }
+
+    .details-title {
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #b1bc9b;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 20px;
+    }
+    .details-grid .full { grid-column: 1 / -1; }
+
+    .detail-item {}
+    .detail-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #b1bc9b;
+      display: block;
+      margin-bottom: 4px;
+      font-style: normal;
+    }
+    .detail-val {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      font-weight: bold;
+      color: #6a6958;
+      line-height: 1.35;
+    }
+    .detail-note {
+      font-size: 11.5px;
+      color: #847c7c;
+      font-style: italic;
+      display: block;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── DIVIDER FINO ────────────────────────────────────── */
+    .rule {
+      border: none;
+      border-top: 1px solid rgba(177,188,155,.4);
+      margin: 28px 22px;
+    }
+
+    /* ============================================================
+       COUNTDOWN
+    ============================================================ */
+    .sec-countdown {
+      padding: 0 22px;
+      text-align: center;
+      animation: fadeUp .9s ease .25s both;
+    }
+    .countdown-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #b1bc9b;
+      margin-bottom: 16px;
+    }
+    .countdown-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .cd-cell {
+      background: #fff;
+      border: 1px solid rgba(177,188,155,.4);
+      border-radius: 2px;
+      padding: 14px 6px 10px;
+      box-shadow: 0 2px 10px rgba(106,105,88,.08);
+    }
+    .cd-n {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-style: italic;
+      color: #7a8e7f;
+      line-height: 1;
+      transition: transform .1s, color .1s;
+    }
+    .cd-u {
+      display: block;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #b1bc9b;
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       SEÇÃO CONFIRMAÇÃO + WHATSAPP
+    ============================================================ */
+    .sec-confirm {
+      padding: 0 22px;
+      text-align: center;
+      animation: fadeUp .9s ease .35s both;
+    }
+
+    .confirm-box {
+      background: #fff;
+      border: 1px solid rgba(177,188,155,.4);
+      border-radius: 3px;
+      padding: 22px 20px;
+      box-shadow: 0 2px 12px rgba(106,105,88,.08);
+    }
+
+    .confirm-headline {
+      font-family: Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      color: #6a6958;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .confirm-sub {
+      font-size: 12px;
+      color: #847c7c;
+      font-style: italic;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    /* ── BOTÃO WHATSAPP ─────────────────────────────────── */
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #7a8e7f;
+      color: #f7f3ef;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 2px;
+      font-family: Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      letter-spacing: .5px;
+      width: 100%;
+      max-width: 300px;
+      box-shadow: 0 4px 18px rgba(122,142,127,.35);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      animation: btn-pulse 3s ease-in-out infinite;
+    }
+    @keyframes btn-pulse {
+      0%,100% { box-shadow: 0 4px 18px rgba(122,142,127,.35); }
+      50%      { box-shadow: 0 6px 28px rgba(122,142,127,.55); }
+    }
+    .btn-wa:hover  { transform: translateY(-2px); background: #6a7d72; animation: none; }
+    .btn-wa:active { transform: translateY(0) scale(.98); }
+    .btn-wa svg { flex-shrink: 0; }
+
+    /* ── FRASE FINAL ─────────────────────────────────────── */
+    .frase-final {
+      text-align: center;
+      padding: 32px 32px 28px;
+      animation: fadeUp .9s ease .45s both;
+    }
+    .frase-txt {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: clamp(15px, 4vw, 17px);
+      color: #847c7c;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       SEÇÃO DINO
+       Mesmo truque do bandeiras: fundo #6a6958 + screen blend
+       Dino principal em destaque, centralizado
+    ============================================================ */
+    .sec-dino {
+      background: #6a6958;
+      padding: 40px 20px 48px;
+      text-align: center;
+    }
+    .sec-dino img {
+      display: block;
+      width: 220px;
+      max-width: 70%;
+      margin: 0 auto;
+      mix-blend-mode: screen;  /* remove fundo preto da imagem */
+      animation: dino-float 3.5s ease-in-out infinite;
+    }
+    @keyframes dino-float {
+      0%, 100% { transform: translateY(0)    rotate(-1.5deg); }
+      50%       { transform: translateY(-12px) rotate(1.5deg);  }
+    }
+
+    /* ============================================================
+       FOOTER / ASSINATURA
+    ============================================================ */
+    .sec-footer {
+      background: #6a6958;
+      padding: 0 20px 52px;
+      text-align: center;
+    }
+
+    /* Linha ornamental antes da assinatura */
+    .footer-rule {
+      border: none;
+      border-top: 1px solid rgba(177,188,155,.3);
+      margin: 0 40px 28px;
+    }
+
+    .footer-com-carinho {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #b1bc9b;
+      margin-bottom: 8px;
+    }
+
+    /* Assinatura em script manuscrito */
+    .footer-assinatura {
+      font-family: 'Brush Script MT', 'Segoe Script', 'Brush Script Std', cursive;
+      font-size: clamp(28px, 7.5vw, 38px);
+      color: #f7f3ef;
+      line-height: 1.2;
+      /* fallback elegante se o sistema não tiver script font */
+      font-style: italic;
+    }
+    /* Fallback: se cursive genérico não for bonito o suficiente,  */
+    /* Georgia itálica é melhor que Comic Sans etc. */
+    @supports not (font-family: 'Brush Script MT') {
+      .footer-assinatura { font-family: Georgia, serif; font-size: clamp(22px,6vw,30px); }
+    }
+
+    /* Pontinhos decorativos no footer */
+    .footer-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .footer-dots span {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(177,188,155,.5);
+    }
+    .footer-dots span:nth-child(2) { background: rgba(177,188,155,.75); }
+
+    /* ============================================================
+       ANIMAÇÕES
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll reveal (adiciona classe .visible via JS) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="envelope">
+
+  <!-- ======================================================
+       BANDEIRAS — fundo escuro para neutralizar o preto da imagem
+       mix-blend-mode: screen → pixels pretos desaparecem
+  ====================================================== -->
+  <div class="sec-bandeiras">
+    <img src="bandeiras.png" alt="Bandeirinhas decorativas" />
+  </div>
+
+
+  <!-- ======================================================
+       HERO
+  ====================================================== -->
+  <section class="sec-hero">
+    <h1 class="hero-name">Gabriel</h1>
+    <span class="hero-faz">— faz —</span>
+    <div class="hero-age">1 aninho!</div>
+
+    <!-- Ornamento decorativo -->
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-dot lg"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-line"></div>
+    </div>
+
+    <p class="hero-desc">
+      O tempo voou... e o nosso pequeno ja vai completar
+      seu primeiro aninho! Queremos celebrar esse momento
+      tao especial com pessoas que fazem parte da nossa historia.
+    </p>
+  </section>
+
+
+  <!-- ======================================================
+       DETALHES
+  ====================================================== -->
+  <section class="sec-details reveal">
+    <div class="details-card">
+      <p class="details-title">Detalhes da Festa</p>
+      <div class="details-grid">
+
+        <div class="detail-item">
+          <span class="detail-label">Data</span>
+          <span class="detail-val">24 de Maio</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Horario</span>
+          <span class="detail-val">11h</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Local</span>
+          <span class="detail-val">Com Festa</span>
+        </div>
+
+        <div class="detail-item full">
+          <span class="detail-label">Endereco</span>
+          <span class="detail-val">Rua Antonio Joaquim Mesquita, 196</span>
+          <span class="detail-note">
+            O local fica ao lado do Shopping Bourbon Wallig
+            e voce pode estacionar por la.
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================
+       CONTAGEM REGRESSIVA
+  ====================================================== -->
+  <hr class="rule" />
+  <section class="sec-countdown reveal">
+    <p class="countdown-label">Faltam apenas</p>
+    <div class="countdown-row">
+      <div class="cd-cell"><span class="cd-n" id="cd-d">--</span><span class="cd-u">dias</span></div>
+      <div class="cd-cell"><span class="cd-n" id="cd-h">--</span><span class="cd-u">horas</span></div>
+      <div class="cd-cell"><span class="cd-n" id="cd-m">--</span><span class="cd-u">min</span></div>
+      <div class="cd-cell"><span class="cd-n" id="cd-s">--</span><span class="cd-u">seg</span></div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================
+       CONFIRMAÇÃO + WHATSAPP
+  ====================================================== -->
+  <hr class="rule" />
+  <section class="sec-confirm reveal">
+    <div class="confirm-box">
+
+      <p class="confirm-headline">Confirme sua presenca ate o dia 11/05</p>
+      <p class="confirm-sub">para garantirmos lugares para todos com carinho!</p>
+
+      <a class="btn-wa" id="wa-btn" href="#" target="_blank" rel="noopener noreferrer">
+        <!-- Icone WhatsApp -->
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 3C8.82 3 3 8.82 3 16c0 2.3.6 4.45 1.64 6.31L3 29l6.86-1.62A13 13 0 0016 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm6.38 18.5c-.27.76-1.6 1.46-2.2 1.54-.57.08-1.11.35-3.77-.8-3.16-1.35-5.16-4.56-5.32-4.77-.15-.2-1.32-1.77-1.32-3.38s.84-2.4 1.14-2.73c.29-.33.63-.41.84-.41.22 0 .43 0 .61.01.2.02.48-.07.75.58l1 2.44c.08.2.04.43-.07.62l-.44.65c-.11.15-.22.3-.09.6.35.83 1.1 1.87 1.96 2.6.9.77 1.8 1.08 2.18 1.23.29.1.52.08.72-.05l.65-.74c.2-.22.46-.31.72-.21l2.28.91c.22.1.44.22.58.38.14.17.14.77-.14 1.52z" fill="currentColor"/>
+        </svg>
+        Confirmar Presenca
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================
+       FRASE FINAL
+  ====================================================== -->
+  <section class="frase-final reveal">
+    <p class="frase-txt">
+      "Sua presenca vai deixar<br>esse dia ainda mais especial!"
+    </p>
+  </section>
+
+
+  <!-- ======================================================
+       DINO — seção escura, mesmo tratamento das bandeiras
+       mix-blend-mode: screen remove o fundo preto
+  ====================================================== -->
+  <section class="sec-dino">
+    <img src="dino.png" alt="Dinossauro bebe fofo" />
+  </section>
+
+
+  <!-- ======================================================
+       FOOTER / ASSINATURA
+  ====================================================== -->
+  <footer class="sec-footer">
+    <hr class="footer-rule" />
+    <p class="footer-com-carinho">Com carinho</p>
+    <p class="footer-assinatura">Papais do Gabriel</p>
+    <div class="footer-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </footer>
+
+</div><!-- /envelope -->
+
+
+<script>
+/* ============================================================
+   COUNTDOWN — 24 de Maio 2026 às 11h
+============================================================ */
+(function () {
+  var target = new Date('2026-05-24T11:00:00');
+  var els = {
+    d: document.getElementById('cd-d'),
+    h: document.getElementById('cd-h'),
+    m: document.getElementById('cd-m'),
+    s: document.getElementById('cd-s')
+  };
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function flip(el, val) {
+    if (el.textContent !== val) {
+      el.style.transform = 'scale(1.2)';
+      el.style.color = '#b1bc9b';
+      setTimeout(function () {
+        el.textContent = val;
+        el.style.transform = '';
+        el.style.color = '';
+      }, 80);
+    }
+  }
+
+  function tick() {
+    var diff = target - new Date();
+    if (diff <= 0) {
+      Object.values(els).forEach(function (e) { e.textContent = '00'; });
+      return;
+    }
+    flip(els.d, pad(Math.floor(diff / 86400000)));
+    flip(els.h, pad(Math.floor((diff % 86400000) / 3600000)));
+    flip(els.m, pad(Math.floor((diff % 3600000) / 60000)));
+    flip(els.s, pad(Math.floor((diff % 60000) / 1000)));
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ============================================================
+   WHATSAPP — mensagem simples, sem emojis
+============================================================ */
+(function () {
+  var phone = '5551986823792';
+  var msg = encodeURIComponent(
+    'Ola! Vi o convite do aniversario do Gabriel e confirmo minha presenca na festinha no dia 24 de Maio. Ate la!'
+  );
+  document.getElementById('wa-btn').href = 'https://wa.me/' + phone + '?text=' + msg;
+})();
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+(function () {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    io.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>
