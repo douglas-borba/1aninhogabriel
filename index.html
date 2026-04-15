@@ -1068,14 +1068,14 @@
     function resetGuestFields() {
       guestList.innerHTML = "";
       renderGuestField(0);
-      modalFeedback.textContent = "";
+      modalFeedback.textContent = "Aguarde, estamos confirmando sua presença...";
     }
 
     function openModal() {
       rsvpModal.classList.add("is-open");
       rsvpModal.setAttribute("aria-hidden", "false");
       if (!guestList.children.length) resetGuestFields();
-      modalFeedback.textContent = "";
+      modalFeedback.textContent = "Aguarde, estamos confirmando sua presença...";
       const firstInput = guestList.querySelector("input");
       if (firstInput) setTimeout(() => firstInput.focus(), 50);
     }
@@ -1083,7 +1083,7 @@
     function closeModal() {
       rsvpModal.classList.remove("is-open");
       rsvpModal.setAttribute("aria-hidden", "true");
-      modalFeedback.textContent = "";
+      modalFeedback.textContent = "Aguarde, estamos confirmando sua presença...";
     }
 
     openRsvpModalButton.addEventListener("click", (event) => {
@@ -1128,8 +1128,9 @@
 
       submitRsvpButton.disabled = true;
       submitRsvpButton.classList.add("is-loading");
+      modalFeedback.textContent = "Aguarde, estamos confirmando sua presença...";
       submitRsvpButton.textContent = "Enviando...";
-      modalFeedback.textContent = "";
+      modalFeedback.textContent = "Aguarde, estamos confirmando sua presença...";
 
       try {
         const response = await fetch(APPS_SCRIPT_URL, {
