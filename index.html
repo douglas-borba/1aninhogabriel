@@ -567,6 +567,147 @@
 
     .footer-space { height: 4px; }
 
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(106, 105, 88, 0.28);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 30;
+    }
+
+    .modal-overlay.is-open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(100%, 420px);
+      background: rgba(247, 243, 239, 0.98);
+      border: 1px solid rgba(177,188,155,.35);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(60, 50, 35, 0.14);
+      padding: 22px 18px 18px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(177,188,155,.18);
+      color: var(--accent);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .modal-title {
+      margin: 0;
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-style: italic;
+    }
+
+    .modal-subtitle {
+      margin: 8px auto 18px;
+      max-width: 290px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .guest-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .guest-field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .guest-index {
+      width: 28px;
+      flex: 0 0 28px;
+      text-align: center;
+      color: var(--soft);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .guest-input {
+      width: 100%;
+      border: 1px solid rgba(177,188,155,.45);
+      border-radius: 14px;
+      background: rgba(255,255,255,.7);
+      padding: 14px 16px;
+      font-size: 1rem;
+      color: var(--text);
+      outline: none;
+    }
+
+    .guest-input:focus {
+      border-color: rgba(122,142,127,.65);
+      box-shadow: 0 0 0 3px rgba(177,188,155,.18);
+    }
+
+    .modal-actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .add-guest,
+    .submit-rsvp {
+      width: 100%;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .add-guest {
+      border: 1px dashed rgba(177,188,155,.8);
+      background: rgba(255,255,255,.42);
+      color: var(--accent);
+    }
+
+    .submit-rsvp {
+      border: 0;
+      background: var(--accent);
+      color: #f7f3ef;
+    }
+
+    .add-guest:hover,
+    .submit-rsvp:hover {
+      transform: translateY(-1px);
+    }
+
+    .submit-rsvp:disabled {
+      opacity: .65;
+      cursor: wait;
+      transform: none;
+    }
+
+    .modal-feedback {
+      min-height: 22px;
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--accent);
+    }
+
     @media (max-width: 390px) {
       .hero-dino {
         left: -16px;
@@ -817,7 +958,7 @@
       </section>
 
       <section class="rsvp fade-up delay-5">
-        <a href="https://wa.me/5551993687188?text=Olá!%20Confirmo%20presença%20no%20aniversário%20de%201%20aninho%20do%20Gabriel." target="_blank" rel="noopener noreferrer">
+        <a href="#" id="openRsvpModal" role="button" aria-haspopup="dialog" aria-controls="rsvpModal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.52 3.48A11.8 11.8 0 0 0 12.05 0C5.5 0 .2 5.3.2 11.85c0 2.1.55 4.15 1.6 5.95L0 24l6.4-1.7a11.83 11.83 0 0 0 5.65 1.45h.01c6.55 0 11.85-5.3 11.85-11.85 0-3.17-1.23-6.15-3.39-8.42ZM12.06 21.3h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.8 1.01 1.02-3.7-.22-.38a9.36 9.36 0 0 1-1.43-5c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.88.98 6.66 2.76a9.34 9.34 0 0 1 2.76 6.66c0 5.2-4.23 9.44-9.43 9.44Zm5.17-7.03c-.28-.14-1.65-.82-1.9-.91-.25-.09-.43-.14-.62.14-.18.28-.71.91-.87 1.1-.16.18-.32.21-.6.07-.28-.14-1.17-.43-2.22-1.37-.82-.73-1.37-1.63-1.53-1.9-.16-.28-.02-.43.12-.57.12-.12.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.34-.02-.48-.07-.14-.62-1.5-.85-2.05-.22-.53-.45-.46-.62-.47l-.53-.01c-.18 0-.48.07-.73.34-.25.28-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.94 4.67 4.12.65.28 1.16.45 1.56.58.66.21 1.26.18 1.73.11.53-.08 1.65-.67 1.88-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.18-.53-.32Z"/>
           </svg>
@@ -836,6 +977,151 @@
       </section>
       <div class="footer-space"></div>
     </div>
+
+    <div class="modal-overlay" id="rsvpModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="closeRsvpModal" aria-label="Fechar">×</button>
+        <h2 class="modal-title" id="modalTitle">Confirmar presença</h2>
+        <p class="modal-subtitle">Adicione o nome de cada convidado que vai participar da festa.</p>
+
+        <form id="rsvpForm">
+          <div class="guest-list" id="guestList"></div>
+
+          <div class="modal-actions">
+            <button type="button" class="add-guest" id="addGuestButton">+ Adicionar outro convidado</button>
+            <button type="submit" class="submit-rsvp" id="submitRsvpButton">Confirmar presença</button>
+          </div>
+
+          <div class="modal-feedback" id="modalFeedback"></div>
+        </form>
+      </div>
+    </div>
   </main>
+
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby60kcQ3Dg4UQGPXzlUlZmNT3CwwOocrgHtqexn4x0Epb2RVhJqQvAyc3nQr2zdvYbKmw/exec";
+
+    const openRsvpModalButton = document.getElementById("openRsvpModal");
+    const closeRsvpModalButton = document.getElementById("closeRsvpModal");
+    const rsvpModal = document.getElementById("rsvpModal");
+    const guestList = document.getElementById("guestList");
+    const addGuestButton = document.getElementById("addGuestButton");
+    const rsvpForm = document.getElementById("rsvpForm");
+    const submitRsvpButton = document.getElementById("submitRsvpButton");
+    const modalFeedback = document.getElementById("modalFeedback");
+
+    function renderGuestField(index, value = "") {
+      const wrapper = document.createElement("div");
+      wrapper.className = "guest-field";
+      wrapper.innerHTML = `
+        <div class="guest-index">${index + 1}</div>
+        <input
+          class="guest-input"
+          type="text"
+          name="guest-${index + 1}"
+          placeholder="Nome do convidado"
+          value="${value.replace(/"/g, '&quot;')}"
+          ${index === 0 ? "required" : ""}
+        />
+      `;
+      guestList.appendChild(wrapper);
+    }
+
+    function resetGuestFields() {
+      guestList.innerHTML = "";
+      renderGuestField(0);
+      modalFeedback.textContent = "";
+    }
+
+    function openModal() {
+      rsvpModal.classList.add("is-open");
+      rsvpModal.setAttribute("aria-hidden", "false");
+      if (!guestList.children.length) resetGuestFields();
+      const firstInput = guestList.querySelector("input");
+      if (firstInput) setTimeout(() => firstInput.focus(), 50);
+    }
+
+    function closeModal() {
+      rsvpModal.classList.remove("is-open");
+      rsvpModal.setAttribute("aria-hidden", "true");
+    }
+
+    openRsvpModalButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      openModal();
+    });
+
+    closeRsvpModalButton.addEventListener("click", closeModal);
+
+    rsvpModal.addEventListener("click", (event) => {
+      if (event.target === rsvpModal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && rsvpModal.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+
+    addGuestButton.addEventListener("click", () => {
+      renderGuestField(guestList.children.length);
+      const inputs = guestList.querySelectorAll("input");
+      inputs[inputs.length - 1].focus();
+    });
+
+    rsvpForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const guestNames = Array.from(guestList.querySelectorAll("input"))
+        .map((input) => input.value.trim())
+        .filter(Boolean);
+
+      if (!guestNames.length) {
+        modalFeedback.textContent = "Adicione pelo menos um convidado.";
+        return;
+      }
+
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes("COLE_AQUI")) {
+        modalFeedback.textContent = "Falta configurar a URL do Google Apps Script.";
+        return;
+      }
+
+      submitRsvpButton.disabled = true;
+      submitRsvpButton.textContent = "Enviando...";
+      modalFeedback.textContent = "";
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify({
+            guestNames,
+            totalGuests: guestNames.length,
+            submittedAt: new Date().toISOString(),
+            source: "site-convite-gabriel"
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("Falha ao enviar confirmação.");
+        }
+
+        modalFeedback.textContent = "Presença confirmada com sucesso!";
+        rsvpForm.reset();
+        resetGuestFields();
+        setTimeout(closeModal, 900);
+      } catch (error) {
+        modalFeedback.textContent = "Não foi possível enviar agora. Tente novamente.";
+      } finally {
+        submitRsvpButton.disabled = false;
+        submitRsvpButton.textContent = "Confirmar presença";
+      }
+    });
+
+    resetGuestFields();
+  </script>
 </body>
 </html>
