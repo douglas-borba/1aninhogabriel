@@ -14,11 +14,8 @@
       --line: rgba(177, 188, 155, 0.55);
       --card: rgba(255,255,255,0.34);
     }
-
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
       background: #ece9e2;
@@ -27,7 +24,6 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
-
     .page {
       width: min(100%, 490px);
       margin: 0 auto;
@@ -44,7 +40,6 @@
         linear-gradient(var(--bg), var(--bg));
       background-size: 120px 120px, 140px 140px, 130px 130px, 150px 150px, 140px 140px, auto;
     }
-
     .page::before {
       content: "";
       position: absolute;
@@ -57,7 +52,6 @@
       background-position: 0 0, 14px 19px;
       background-size: 22px 22px, 18px 18px;
     }
-
     .bubbles {
       position: absolute;
       inset: 0;
@@ -67,7 +61,6 @@
       opacity: 1;
       height: 100%;
     }
-
     .bubble {
       position: absolute;
       bottom: -120px;
@@ -79,7 +72,6 @@
       opacity: .7;
       will-change: transform, opacity;
     }
-
     .bubble::after {
       content: "";
       position: absolute;
@@ -91,7 +83,6 @@
       background: rgba(255,255,255,.72);
       filter: blur(.8px);
     }
-
     .b1 { left: 8%; width: 18px; height: 18px; animation-duration: 14s; animation-delay: -2s; }
     .b2 { left: 19%; width: 28px; height: 28px; animation-duration: 18s; animation-delay: -9s; }
     .b3 { left: 33%; width: 14px; height: 14px; animation-duration: 13s; animation-delay: -5s; }
@@ -108,14 +99,12 @@
     .b14 { left: 60%; width: 22px; height: 22px; animation-duration: 18s; animation-delay: -6s; }
     .b15 { left: 76%; width: 12px; height: 12px; animation-duration: 12s; animation-delay: -4s; }
     .b16 { left: 88%; width: 20px; height: 20px; animation-duration: 16s; animation-delay: -14s; }
-
     @keyframes bubbleRise {
       0% { transform: translate3d(0, 0, 0) scale(.82); opacity: 0; }
       8% { opacity: .5; }
       50% { transform: translate3d(-10px, -55vh, 0) scale(1.02); opacity: .72; }
       100% { transform: translate3d(12px, -135vh, 0) scale(1.14); opacity: 0; }
     }
-
     .wrap {
       max-width: 420px;
       margin-left: auto;
@@ -123,46 +112,39 @@
       padding-left: 20px;
       padding-right: 20px;
     }
-
     .fade-up {
       opacity: 0;
       transform: translateY(18px);
       animation: fadeUp .9s ease forwards;
     }
-
     .delay-1 { animation-delay: .08s; }
     .delay-2 { animation-delay: .18s; }
     .delay-3 { animation-delay: .28s; }
     .delay-4 { animation-delay: .38s; }
     .delay-5 { animation-delay: .48s; }
     .delay-6 { animation-delay: .58s; }
-
+    .delay-7 { animation-delay: .68s; }
     @keyframes fadeUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-
     @keyframes floatSoft {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
-
     @keyframes sway {
       0%, 100% { transform: rotate(-1.2deg); }
       50% { transform: rotate(1.2deg); }
     }
-
     @keyframes pulseGlow {
       0%, 100% { box-shadow: 0 10px 24px rgba(122,142,127,.06); }
       50% { box-shadow: 0 14px 30px rgba(122,142,127,.14); }
     }
-
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-
     @keyframes ctaBreath {
       0%, 100% {
         transform: scale(1);
@@ -174,6 +156,88 @@
       }
     }
 
+    /* ─── Countdown ─────────────────────────────────── */
+    @keyframes cdTick {
+      0%   { opacity: 1;   transform: translateY(0);   }
+      35%  { opacity: .5;  transform: translateY(-3px); }
+      65%  { opacity: .85; transform: translateY(1px); }
+      100% { opacity: 1;   transform: translateY(0);   }
+    }
+    .countdown {
+      margin: 4px auto 28px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .countdown-label {
+      font-size: .78rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+    .countdown-units {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+    }
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 72px;
+    }
+    .cd-num {
+      font-size: clamp(2.1rem, 6.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -.02em;
+      font-variant-numeric: tabular-nums;
+      min-width: 2ch;
+      display: inline-block;
+      text-align: center;
+    }
+    .cd-num.tick {
+      animation: cdTick .36s ease;
+    }
+    .cd-caption {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 5px;
+      font-style: italic;
+      opacity: .82;
+    }
+    .cd-sep {
+      color: rgba(177,188,155,.55);
+      font-size: 1.6rem;
+      line-height: 1;
+      padding: 0 2px;
+      transform: translateY(6px);
+      font-weight: 300;
+      user-select: none;
+    }
+    .countdown-sub {
+      margin-top: 12px;
+      font-size: .78rem;
+      letter-spacing: .24em;
+      text-transform: lowercase;
+      color: var(--soft);
+      font-style: italic;
+      opacity: .9;
+    }
+    .countdown-rule {
+      margin: 0 auto 22px;
+      width: 100%;
+      max-width: 390px;
+      height: 1px;
+      background: repeating-linear-gradient(to right, var(--line), var(--line) 6px, transparent 6px, transparent 12px);
+    }
+    /* ─────────────────────────────────────────────── */
+
     .top-banner {
       display: flex;
       justify-content: center;
@@ -181,7 +245,6 @@
       margin-bottom: 8px;
       pointer-events: none;
     }
-
     .top-banner img {
       width: min(92%, 410px);
       height: auto;
@@ -190,7 +253,6 @@
       animation: sway 5.6s ease-in-out infinite;
       transform-origin: top center;
     }
-
     .hero {
       margin-top: 10px;
       position: relative;
@@ -202,7 +264,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-
     .hero-dino {
       position: absolute;
       left: -40px;
@@ -216,7 +277,6 @@
       z-index: 0;
       pointer-events: none;
     }
-
     .hero-dino img {
       width: 100%;
       max-width: 108px;
@@ -225,7 +285,6 @@
       object-fit: contain;
       filter: drop-shadow(0 4px 10px rgba(106,105,88,.04));
     }
-
     .hero-copy {
       text-align: center;
       display: flex;
@@ -236,18 +295,15 @@
       position: relative;
       z-index: 1;
     }
-
     .title-name,
     .title-age {
       font-size: clamp(2.8rem, 7.2vw, 4.1rem);
       font-weight: 700;
     }
-
     .title-name {
       font-size: clamp(3rem, 8vw, 4.6rem);
       font-weight: 700;
     }
-
     .title-faz {
       margin: 8px 0 6px;
       display: flex;
@@ -260,7 +316,6 @@
       letter-spacing: .18em;
       text-transform: lowercase;
     }
-
     .title-faz::before,
     .title-faz::after {
       content: "";
@@ -268,12 +323,10 @@
       height: 1px;
       background: rgba(132,124,124,.4);
     }
-
     .title-age {
       font-size: clamp(2.6rem, 7.2vw, 4rem);
       font-weight: 700;
     }
-
     .dots-divider {
       margin: 10px auto 0;
       display: flex;
@@ -283,7 +336,6 @@
       width: 160px;
       color: var(--soft);
     }
-
     .dots-divider::before,
     .dots-divider::after {
       content: "";
@@ -291,12 +343,10 @@
       height: 1px;
       background: var(--line);
     }
-
     .dots-divider span {
       display: flex;
       gap: 8px;
     }
-
     .dots-divider i {
       width: 8px;
       height: 8px;
@@ -304,7 +354,6 @@
       display: block;
       background: var(--soft);
     }
-
     .lead {
       margin: 26px auto 26px;
       max-width: 630px;
@@ -315,7 +364,6 @@
       font-style: italic;
       padding: 0 12px;
     }
-
     .section-rule {
       margin: 10px auto 22px;
       width: 100%;
@@ -326,20 +374,17 @@
       gap: 12px;
       color: var(--soft);
     }
-
     .section-rule::before,
     .section-rule::after {
       content: "";
       height: 1px;
       background: repeating-linear-gradient(to right, var(--line), var(--line) 6px, transparent 6px, transparent 12px);
     }
-
     .section-rule .heart {
       font-size: 14px;
       line-height: 1;
       transform: translateY(-1px);
     }
-
     .details {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -348,13 +393,11 @@
       margin: 0 auto 6px;
       max-width: 400px;
     }
-
     .detail {
       padding: 8px 12px 0;
       position: relative;
       min-height: 112px;
     }
-
     .detail + .detail::before {
       content: "";
       position: absolute;
@@ -364,14 +407,12 @@
       width: 1px;
       background: rgba(177,188,155,.35);
     }
-
     .icon {
       width: 40px;
       height: 40px;
       margin: 0 auto 10px;
       color: var(--soft);
     }
-
     .detail strong {
       display: block;
       font-size: 0.9rem;
@@ -380,7 +421,6 @@
       color: var(--soft);
       margin-bottom: 6px;
     }
-
     .detail span {
       display: block;
       font-size: 1rem;
@@ -388,7 +428,6 @@
       color: var(--text);
       font-style: italic;
     }
-
     .address-block,
     .parking,
     .rsvp,
@@ -399,12 +438,10 @@
       text-align: center;
       display: block;
     }
-
     .address-block {
       margin-top: 12px;
       max-width: 400px;
     }
-
     .parking {
   margin-top: 14px;
   display: grid;
@@ -419,30 +456,25 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 .parking div {
   text-align: center;
 }
-
 .parking svg {
   width: 20px;
   height: 20px;
   justify-self: end;
   align-self: center;
 }
-
     .rsvp {
       width: 100%;
       max-width: 360px;
       margin: 24px auto 0;
     }
-
     .closing {
       margin-top: 26px;
       max-width: 330px;
       text-align: center;
     }
-
     .address-title {
       display: inline-flex;
       align-items: center;
@@ -457,7 +489,6 @@
       width: 100%;
       text-align: center;
     }
-
     .address-line {
       margin-top: 6px;
       font-size: 1rem;
@@ -465,16 +496,13 @@
       font-style: italic;
       text-align: center;
     }
-
     .parking svg,
     .address-title svg {
       color: var(--soft);
     }
-
     .rsvp {
       margin-top: 24px;
     }
-
     .rsvp a {
       position: relative;
       display: flex;
@@ -498,13 +526,11 @@
       overflow: hidden;
       box-shadow: 0 8px 22px rgba(122, 142, 127, 0.14);
     }
-
     .rsvp a:hover {
       transform: translateY(-1px);
       filter: brightness(1.01);
       box-shadow: 0 10px 24px rgba(122, 142, 127, 0.18);
     }
-
     .rsvp a svg {
       position: absolute;
       left: 22px;
@@ -513,7 +539,6 @@
       flex: 0 0 auto;
       z-index: 1;
     }
-
     .rsvp a span {
       display: block;
       width: 100%;
@@ -523,11 +548,9 @@
       margin: 0 auto;
       text-shadow: 0 1px 1px rgba(0,0,0,0.08);
     }
-
     .closing {
       margin-top: 24px;
     }
-
     .closing-text {
       font-size: 1.02rem;
       line-height: 1.42;
@@ -539,14 +562,12 @@
       margin-left: auto;
       margin-right: auto;
     }
-
     .signature-lead {
       color: var(--text);
       font-size: .98rem;
       margin-bottom: 6px;
       text-align: center;
     }
-
     .signature-name {
       color: var(--accent);
       font-size: clamp(2rem, 5.5vw, 2.55rem);
@@ -560,7 +581,6 @@
       display: block;
       transform: translateX(-6px);
     }
-
     .bottom-scene {
       position: relative;
       width: 100%;
@@ -571,7 +591,6 @@
       justify-content: center;
       overflow: hidden;
     }
-
     .bottom-scene img {
       width: 100%;
       max-width: 430px;
@@ -579,9 +598,7 @@
       object-fit: contain;
       display: block;
     }
-
     .footer-space { height: 4px; }
-
     .footer-credit {
       width: 100%;
       text-align: center;
@@ -592,7 +609,6 @@
       margin-bottom: 6px;
       position: static;
     }
-
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -604,11 +620,9 @@
       padding: 20px;
       z-index: 30;
     }
-
     .modal-overlay.is-open {
       display: flex;
     }
-
     .modal-card {
       width: min(100%, 420px);
       background: rgba(247, 243, 239, 0.98);
@@ -618,7 +632,6 @@
       padding: 22px 18px 18px;
       position: relative;
     }
-
     .modal-close {
       position: absolute;
       top: 12px;
@@ -632,7 +645,6 @@
       font-size: 1.2rem;
       cursor: pointer;
     }
-
     .modal-title {
       margin: 0;
       text-align: center;
@@ -640,7 +652,6 @@
       font-size: 1.5rem;
       font-style: italic;
     }
-
     .modal-subtitle {
       margin: 8px auto 18px;
       max-width: 290px;
@@ -649,19 +660,16 @@
       font-size: 0.95rem;
       line-height: 1.45;
     }
-
     .guest-list {
       display: grid;
       gap: 10px;
       margin-bottom: 14px;
     }
-
     .guest-field {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
     .guest-index {
       width: 28px;
       flex: 0 0 28px;
@@ -670,7 +678,6 @@
       font-weight: 700;
       font-size: 0.95rem;
     }
-
     .guest-input {
       width: 100%;
       border: 1px solid rgba(177,188,155,.45);
@@ -681,17 +688,14 @@
       color: var(--text);
       outline: none;
     }
-
     .guest-input:focus {
       border-color: rgba(122,142,127,.65);
       box-shadow: 0 0 0 3px rgba(177,188,155,.18);
     }
-
     .modal-actions {
       display: grid;
       gap: 10px;
     }
-
     .add-guest,
     .submit-rsvp {
       width: 100%;
@@ -702,35 +706,29 @@
       cursor: pointer;
       transition: transform .2s ease, background .2s ease, border-color .2s ease;
     }
-
     .add-guest {
       border: 1px dashed rgba(177,188,155,.8);
       background: rgba(255,255,255,.42);
       color: var(--accent);
     }
-
     .submit-rsvp {
       border: 0;
       background: var(--accent);
       color: #f7f3ef;
     }
-
     .add-guest:hover,
     .submit-rsvp:hover {
       transform: translateY(-1px);
     }
-
     .submit-rsvp:disabled {
       opacity: .75;
       cursor: wait;
       transform: none;
     }
-
     .submit-rsvp.is-loading {
       position: relative;
       color: transparent;
     }
-
     .submit-rsvp.is-loading::after {
       content: "";
       position: absolute;
@@ -745,7 +743,6 @@
       border-top-color: #f7f3ef;
       animation: spin .75s linear infinite;
     }
-
     .modal-feedback {
       min-height: 22px;
       margin-top: 12px;
@@ -753,7 +750,6 @@
       font-size: 0.92rem;
       color: var(--accent);
     }
-
     .status-card {
       display: flex;
       align-items: center;
@@ -762,14 +758,12 @@
       text-align: left;
       padding: 28px 22px;
     }
-
     .status-icon {
       flex: 0 0 auto;
       font-size: 2rem;
       line-height: 1;
       margin: 0;
     }
-
     .status-text {
       margin: 0;
       color: var(--accent);
@@ -778,155 +772,128 @@
       font-style: italic;
       text-align: left;
     }
-
     @media (max-width: 390px) {
       .rsvp a {
         animation: ctaBreath 3.4s ease-in-out infinite;
       }
-
       .status-card {
         gap: 12px;
         padding: 24px 18px;
       }
-
       .status-icon {
         font-size: 1.8rem;
       }
-
       .status-text {
         font-size: 0.98rem;
       }
-
       .hero-dino {
         left: -16px;
         top: 58%;
         transform: translate(0, -50%) scale(0.8);
         opacity: 0.34;
       }
-
       .wrap {
         padding-left: 18px;
         padding-right: 18px;
       }
-
       .top-banner img {
         width: min(96%, 330px);
       }
-
       .hero {
         max-width: 100%;
         min-height: 148px;
       }
-
       .hero-dino {
         left: -16px;
         top: 58%;
         transform: translate(0, -50%) scale(0.8);
         opacity: 0.34;
       }
-
       .hero-dino img {
         max-width: 98px;
       }
-
       .title-name {
         font-size: clamp(2.8rem, 12vw, 3.7rem);
       }
-
       .title-age {
         font-size: clamp(2.2rem, 10vw, 3.2rem);
       }
-
       .title-faz {
         font-size: 0.92rem;
         letter-spacing: 0.14em;
       }
-
       .title-faz::before,
       .title-faz::after {
         width: 24px;
       }
-
       .lead {
         font-size: .98rem;
         padding: 0 4px;
       }
-
+      .cd-unit { min-width: 56px; }
+      .cd-num { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+      .cd-sep { font-size: 1.3rem; }
       .details {
         grid-template-columns: 1fr;
         gap: 10px;
         max-width: 320px;
       }
-
       .detail + .detail::before {
         display: none;
       }
-
       .detail {
         border-top: 1px solid rgba(177,188,155,.22);
         padding-top: 16px;
         min-height: auto;
       }
-
       .detail:first-child {
         border-top: 0;
       }
-
       .address-block,
       .rsvp,
       .closing {
         max-width: 320px;
       }
-
       .parking {
         grid-template-columns: 24px 1fr;
         width: 100%;
         max-width: 320px;
       }
-
       .rsvp a {
         min-height: 88px;
         padding: 16px 14px;
         font-size: .98rem;
         text-align: center;
       }
-
       .rsvp a svg {
         left: 18px;
       }
-
       .rsvp a span {
         padding: 0 36px;
       }
-
       .signature-name {
         font-size: clamp(1.9rem, 7.8vw, 2.35rem);
       }
-
       .bottom-scene {
         width: 100vw;
         margin-left: calc(-50vw + 50%);
         height: 150px;
       }
     }
-
     @media (min-width: 391px) and (max-width: 520px) {
       .rsvp a {
         animation: ctaBreath 3.4s ease-in-out infinite;
       }
-
       .hero-dino {
         left: -12px;
         top: 57%;
         transform: translate(0, -50%) scale(0.84);
         opacity: 0.36;
       }
-
       .hero-dino img {
         max-width: 102px;
       }
     }
-
     @media (min-width: 391px) and (max-width: 520px) {
       .hero-dino {
         left: 6px;
@@ -934,18 +901,15 @@
         transform: translate(0, -50%) scale(0.76);
         opacity: 0.35;
       }
-
       .hero-dino img {
         max-width: 90px;
       }
     }
-
     @media (min-width: 391px) and (max-width: 520px) {
       .hero-dino {
         transform: translate(-128%, -50%) scale(0.9);
         opacity: 0.48;
       }
-
       .hero-dino img {
         max-width: 100px;
       }
@@ -976,12 +940,10 @@
       <div class="top-banner fade-up delay-1" aria-hidden="true">
         <img src="bandeiras.png" alt="" />
       </div>
-
       <section class="hero fade-up delay-2">
         <div class="hero-dino" aria-hidden="true">
           <img src="dino.png" alt="" />
         </div>
-
         <div class="hero-copy">
           <div class="title-name">Gabriel</div>
           <div class="title-faz">faz</div>
@@ -991,13 +953,42 @@
           </div>
         </div>
       </section>
-
       <p class="lead fade-up delay-3">
         O tempo voou... e o nosso pequeno já vai completar seu primeiro aninho!<br>
         Queremos celebrar esse momento tão especial com pessoas que fazem parte da nossa história.
       </p>
 
-      <section class="details fade-up delay-4">
+      <!-- ── Countdown ─────────────────────────────── -->
+      <section class="countdown fade-up delay-4" aria-label="Contagem regressiva para a festa">
+        <div class="countdown-label">faltam</div>
+        <div class="countdown-units" role="timer" aria-live="off">
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-days">--</span>
+            <span class="cd-caption">dias</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-hours">--</span>
+            <span class="cd-caption">horas</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-mins">--</span>
+            <span class="cd-caption">min</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-secs">--</span>
+            <span class="cd-caption">seg</span>
+          </div>
+        </div>
+        <div class="countdown-sub">para o grande dia</div>
+      </section>
+
+      <div class="countdown-rule fade-up delay-5" aria-hidden="true"></div>
+      <!-- ──────────────────────────────────────────── -->
+
+      <section class="details fade-up delay-5">
         <article class="detail">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="5" width="18" height="16" rx="2"></rect>
@@ -1006,7 +997,6 @@
           <strong>Data</strong>
           <span>24 de Maio</span>
         </article>
-
         <article class="detail">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9"></circle>
@@ -1015,7 +1005,6 @@
           <strong>Horário</strong>
           <span>das 11h às 15h</span>
         </article>
-
         <article class="detail">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 21s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10Z"></path>
@@ -1025,8 +1014,7 @@
           <span>Com festa</span>
         </article>
       </section>
-
-      <section class="address-block fade-up delay-4">
+      <section class="address-block fade-up delay-5">
         <div class="address-title">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 21s-7-4.35-7-10a7 7 0 0 1 14 0c0 5.65-7 10-7 10Z"></path>
@@ -1036,8 +1024,7 @@
         </div>
         <div class="address-line">Rua Antônio Joaquim Mesquita, 196</div>
       </section>
-
-      <section class="parking fade-up delay-5">
+      <section class="parking fade-up delay-6">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M3 21h18"></path>
           <path d="M5 21V8l7-5 7 5v13"></path>
@@ -1048,8 +1035,7 @@
           Bourbon Wallig e você pode estacionar por lá.
         </div>
       </section>
-
-      <section class="rsvp fade-up delay-5">
+      <section class="rsvp fade-up delay-6">
         <a href="#" id="openRsvpModal" role="button" aria-haspopup="dialog" aria-controls="rsvpModal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="5" width="18" height="14" rx="2"></rect>
@@ -1058,45 +1044,37 @@
           <span>Confirme sua presença até o dia 11/05</span>
         </a>
       </section>
-
-      <section class="closing fade-up delay-6">
+      <section class="closing fade-up delay-7">
         <p class="closing-text">Sua presença vai deixar esse dia ainda mais especial!</p>
         <div class="signature-lead">Com carinho,</div>
         <div class="signature-name">Papais do Gabriel</div>
       </section>
-
       <section class="bottom-scene" aria-hidden="true">
         <img src="rodape.png" alt="" />
       </section>
       <div class="footer-space"></div>
     </div>
-
     <div class="modal-overlay" id="rsvpModal" aria-hidden="true">
       <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <button class="modal-close" id="closeRsvpModal" aria-label="Fechar">×</button>
         <h2 class="modal-title" id="modalTitle">Confirmar presença</h2>
         <p class="modal-subtitle">Adicione o nome de cada convidado que vai participar da festa.</p>
-
         <form id="rsvpForm">
           <div class="guest-list" id="guestList"></div>
-
           <div class="modal-actions">
             <button type="button" class="add-guest" id="addGuestButton">+ Adicionar outro convidado</button>
             <button type="submit" class="submit-rsvp" id="submitRsvpButton">Confirmar presença</button>
           </div>
-
           <div class="modal-feedback" id="modalFeedback"></div>
         </form>
       </div>
     </div>
-
     <div class="modal-overlay" id="loadingModal" aria-hidden="true">
       <div class="modal-card status-card" role="dialog" aria-modal="true">
         <div class="status-icon">⏳</div>
         <p class="status-text">Aguarde, estamos confirmando sua presença...</p>
       </div>
     </div>
-
     <div class="modal-overlay" id="successModal" aria-hidden="true">
       <div class="modal-card status-card" role="dialog" aria-modal="true">
         <div class="status-icon">✅</div>
@@ -1105,10 +1083,57 @@
     </div>
     <div class="footer-credit">desenvolvido pelo papai</div>
   </main>
-
   <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZF08KjOqbNKa61A7CHk9lQq3Xey0amTbSQxYhB9a0CZuggCRuw5Moyc-yUrQ6bthT4Q/exec";
+    /* ── Countdown ─────────────────────────────────── */
+    (function () {
+      // 24 de maio de 2026 às 11h — ajuste o ano se necessário
+      var PARTY = new Date('2026-05-24T11:00:00');
 
+      var elDays  = document.getElementById('cd-days');
+      var elHours = document.getElementById('cd-hours');
+      var elMins  = document.getElementById('cd-mins');
+      var elSecs  = document.getElementById('cd-secs');
+
+      function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+
+      function setNum(el, val) {
+        var s = pad(val);
+        if (el.textContent === s) return;
+        el.textContent = s;
+        // micro-tick: remove e re-adiciona a classe para re-disparar a animação
+        el.classList.remove('tick');
+        // eslint-disable-next-line no-unused-expressions
+        el.offsetWidth; // reflow forçado
+        el.classList.add('tick');
+      }
+
+      function tick() {
+        var diff = PARTY - Date.now();
+        if (diff <= 0) {
+          setNum(elDays,  0);
+          setNum(elHours, 0);
+          setNum(elMins,  0);
+          setNum(elSecs,  0);
+          return;
+        }
+        var totalSecs = Math.floor(diff / 1000);
+        var secs  = totalSecs % 60;
+        var mins  = Math.floor(totalSecs / 60) % 60;
+        var hours = Math.floor(totalSecs / 3600) % 24;
+        var days  = Math.floor(totalSecs / 86400);
+
+        setNum(elDays,  days);
+        setNum(elHours, hours);
+        setNum(elMins,  mins);
+        setNum(elSecs,  secs);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+    /* ──────────────────────────────────────────────── */
+
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZF08KjOqbNKa61A7CHk9lQq3Xey0amTbSQxYhB9a0CZuggCRuw5Moyc-yUrQ6bthT4Q/exec";
     const openRsvpModalButton = document.getElementById("openRsvpModal");
     const closeRsvpModalButton = document.getElementById("closeRsvpModal");
     const rsvpModal = document.getElementById("rsvpModal");
@@ -1119,7 +1144,6 @@
     const rsvpForm = document.getElementById("rsvpForm");
     const submitRsvpButton = document.getElementById("submitRsvpButton");
     const modalFeedback = document.getElementById("modalFeedback");
-
     function renderGuestField(index, value = "") {
       const wrapper = document.createElement("div");
       wrapper.className = "guest-field";
@@ -1136,13 +1160,11 @@
       `;
       guestList.appendChild(wrapper);
     }
-
     function resetGuestFields() {
       guestList.innerHTML = "";
       renderGuestField(0);
       modalFeedback.textContent = "";
     }
-
     function openModal() {
       rsvpModal.classList.add("is-open");
       rsvpModal.setAttribute("aria-hidden", "false");
@@ -1151,44 +1173,35 @@
       const firstInput = guestList.querySelector("input");
       if (firstInput) setTimeout(() => firstInput.focus(), 50);
     }
-
     function closeModal() {
       rsvpModal.classList.remove("is-open");
       rsvpModal.setAttribute("aria-hidden", "true");
       modalFeedback.textContent = "";
     }
-
     function openLoadingModal() {
       loadingModal.classList.add("is-open");
       loadingModal.setAttribute("aria-hidden", "false");
     }
-
     function closeLoadingModal() {
       loadingModal.classList.remove("is-open");
       loadingModal.setAttribute("aria-hidden", "true");
     }
-
     function openSuccessModal() {
       successModal.classList.add("is-open");
       successModal.setAttribute("aria-hidden", "false");
     }
-
     function closeSuccessModal() {
       successModal.classList.remove("is-open");
       successModal.setAttribute("aria-hidden", "true");
     }
-
     openRsvpModalButton.addEventListener("click", (event) => {
       event.preventDefault();
       openModal();
     });
-
     closeRsvpModalButton.addEventListener("click", closeModal);
-
     rsvpModal.addEventListener("click", (event) => {
       if (event.target === rsvpModal) closeModal();
     });
-
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         if (rsvpModal.classList.contains("is-open")) closeModal();
@@ -1196,35 +1209,28 @@
         if (successModal.classList.contains("is-open")) closeSuccessModal();
       }
     });
-
     addGuestButton.addEventListener("click", () => {
       renderGuestField(guestList.children.length);
       const inputs = guestList.querySelectorAll("input");
       inputs[inputs.length - 1].focus();
     });
-
     rsvpForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
       const guestNames = Array.from(guestList.querySelectorAll("input"))
         .map((input) => input.value.trim())
         .filter(Boolean);
-
       if (!guestNames.length) {
         modalFeedback.textContent = "Adicione pelo menos um convidado.";
         return;
       }
-
       if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes("COLE_AQUI")) {
         modalFeedback.textContent = "Falta configurar a URL do Google Apps Script.";
         return;
       }
-
       submitRsvpButton.disabled = true;
       submitRsvpButton.classList.add("is-loading");
       closeModal();
       openLoadingModal();
-
       try {
         const response = await fetch(APPS_SCRIPT_URL, {
           method: "POST",
@@ -1239,22 +1245,17 @@
             source: "site-convite-gabriel"
           })
         });
-
         if (!response.ok) {
           throw new Error("Falha ao enviar confirmação.");
         }
-
         const result = await response.json();
-
         if (!result.success) {
           throw new Error(result.message || "Falha ao enviar confirmação.");
         }
-
         closeLoadingModal();
         openSuccessModal();
         rsvpForm.reset();
         resetGuestFields();
-
         setTimeout(() => {
           closeSuccessModal();
         }, 2000);
@@ -1267,7 +1268,6 @@
         submitRsvpButton.classList.remove("is-loading");
       }
     });
-
     resetGuestFields();
   </script>
 </body>
