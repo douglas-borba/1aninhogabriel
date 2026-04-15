@@ -567,6 +567,17 @@
 
     .footer-space { height: 4px; }
 
+    .footer-credit {
+      position: fixed;
+      right: 10px;
+      bottom: 8px;
+      font-size: 0.7rem;
+      color: rgba(106,105,88,0.6);
+      font-style: italic;
+      z-index: 20;
+      pointer-events: none;
+    }
+
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -996,10 +1007,11 @@
         </form>
       </div>
     </div>
+    <div class="footer-credit">desenvolvido pelo papai</div>
   </main>
 
   <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgW4v7NjUCsPEVgnC0PanpJDroJacoCyqWHJrpb4Vl2fSgf4lU6q6ltc2_BKLvAovyLw/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZF08KjOqbNKa61A7CHk9lQq3Xey0amTbSQxYhB9a0CZuggCRuw5Moyc-yUrQ6bthT4Q/exec";
 
     const openRsvpModalButton = document.getElementById("openRsvpModal");
     const closeRsvpModalButton = document.getElementById("closeRsvpModal");
