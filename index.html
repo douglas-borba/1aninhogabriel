@@ -745,7 +745,49 @@
       color: var(--accent);
     }
 
+    .status-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      text-align: left;
+      padding: 28px 22px;
+    }
+
+    .status-icon {
+      flex: 0 0 auto;
+      font-size: 2rem;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .status-text {
+      margin: 0;
+      color: var(--accent);
+      font-size: 1.02rem;
+      line-height: 1.45;
+      font-style: italic;
+      text-align: left;
+    }
+
     @media (max-width: 390px) {
+      .rsvp a {
+        animation: pulseGlow 3.8s ease-in-out infinite, ctaFloat 2.8s ease-in-out infinite;
+      }
+
+      .status-card {
+        gap: 12px;
+        padding: 24px 18px;
+      }
+
+      .status-icon {
+        font-size: 1.8rem;
+      }
+
+      .status-text {
+        font-size: 0.98rem;
+      }
+
       .hero-dino {
         left: -16px;
         top: 58%;
@@ -860,6 +902,10 @@
     }
 
     @media (min-width: 391px) and (max-width: 520px) {
+      .rsvp a {
+        animation: pulseGlow 3.8s ease-in-out infinite, ctaFloat 2.8s ease-in-out infinite;
+      }
+
       .hero-dino {
         left: -12px;
         top: 57%;
@@ -1217,4 +1263,5 @@
   </script>
 </body>
 </html>
+
 
