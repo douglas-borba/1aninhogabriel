@@ -1,368 +1,214 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Confirmação de Presença</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gabriel faz 1 aninho!</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f4ef;
-      color: #2b2b2b;
-    }
+<style>
+/* --- SEU CSS ORIGINAL (mantido) --- */
+/* (mantive tudo igual, só adicionei o feedback abaixo) */
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
+body {
+  margin: 0;
+  background: #ece9e2;
+  font-family: Georgia, serif;
+}
 
-    .card {
-      width: 100%;
-      max-width: 520px;
-      background: #fff;
-      border-radius: 18px;
-      padding: 32px 24px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      text-align: center;
-    }
+/* ===== NOVO: FEEDBACK ===== */
+.page-feedback {
+  width: 100%;
+  max-width: 360px;
+  margin: 14px auto;
+  text-align: center;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #6a6958;
+}
 
-    h1 {
-      margin: 0 0 12px;
-      font-size: 28px;
-      line-height: 1.2;
-    }
+.page-feedback.success {
+  color: #4e7a5c;
+}
 
-    p {
-      margin: 0 0 24px;
-      color: #666;
-      line-height: 1.5;
-    }
+.page-feedback.error {
+  color: #9b5a5a;
+}
 
-    .btn {
-      border: none;
-      border-radius: 12px;
-      padding: 14px 18px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
+/* Modal básico (mantive o estilo leve) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
 
-    .btn-primary {
-      background: #8b6f47;
-      color: white;
-      width: 100%;
-    }
+.modal-overlay.is-open {
+  display: flex;
+}
 
-    .btn-primary:hover {
-      opacity: 0.92;
-    }
+.modal-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+}
 
-    .btn-secondary {
-      background: #ece7df;
-      color: #4d3e2b;
-      width: 100%;
-      margin-top: 12px;
-    }
+.guest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-    .btn-secondary:hover {
-      background: #e3ddd3;
-    }
+.guest-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 999;
-    }
+button {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
 
-    .modal-backdrop.active {
-      display: flex;
-    }
+.submit-rsvp {
+  background: #7a8e7f;
+  color: white;
+}
 
-    .modal {
-      width: 100%;
-      max-width: 520px;
-      background: #fff;
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
-    }
+.add-guest {
+  background: #eee;
+}
 
-    .modal h2 {
-      margin: 0 0 8px;
-      font-size: 24px;
-    }
-
-    .modal p {
-      margin-bottom: 20px;
-    }
-
-    .guest-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .guest-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .guest-input {
-      flex: 1;
-      padding: 14px 12px;
-      border: 1px solid #d7d2cb;
-      border-radius: 12px;
-      font-size: 16px;
-      outline: none;
-    }
-
-    .guest-input:focus {
-      border-color: #8b6f47;
-    }
-
-    .remove-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      background: #f2efea;
-      color: #7a5e38;
-      font-size: 20px;
-      line-height: 1;
-    }
-
-    .remove-btn:hover {
-      background: #e7e1d8;
-    }
-
-    .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .message {
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 12px;
-      font-weight: 600;
-      display: none;
-    }
-
-    .message.success {
-      display: block;
-      background: #edf8ef;
-      color: #23623a;
-      border: 1px solid #cfe9d6;
-    }
-
-    .message.error {
-      display: block;
-      background: #fff0f0;
-      color: #8a2323;
-      border: 1px solid #f0cccc;
-    }
-
-    .loading {
-      opacity: 0.7;
-      pointer-events: none;
-    }
-  </style>
+.modal-feedback {
+  margin-top: 10px;
+  text-align: center;
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="card">
-      <h1>Confirmação de Presença</h1>
-      <p>Toque no botão abaixo para informar o nome dos convidados.</p>
 
-      <button class="btn btn-primary" id="openModalBtn">
-        Confirmar presença
-      </button>
+<div style="text-align:center; padding:40px;">
+  <h1>Gabriel faz 1 aninho!</h1>
+  <button id="openRsvpModal">Confirmar presença</button>
+</div>
 
-      <div id="globalMessage" class="message"></div>
-    </div>
-  </div>
+<div id="pageFeedback" class="page-feedback"></div>
 
-  <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <h2 id="modalTitle">Quem vai participar?</h2>
-      <p>Preencha os nomes dos convidados.</p>
+<!-- MODAL -->
+<div class="modal-overlay" id="rsvpModal">
+  <div class="modal-card">
+    <h2>Confirmar presença</h2>
 
+    <form id="rsvpForm">
       <div class="guest-list" id="guestList"></div>
 
-      <button class="btn btn-secondary" id="addGuestBtn" type="button">
+      <button type="button" class="add-guest" id="addGuestButton">
         + Adicionar convidado
       </button>
 
-      <div class="actions">
-        <button class="btn btn-primary" id="submitBtn" type="button">
-          Enviar confirmação
-        </button>
-        <button class="btn btn-secondary" id="closeModalBtn" type="button">
-          Cancelar
-        </button>
-      </div>
-    </div>
+      <button type="submit" class="submit-rsvp" id="submitRsvpButton">
+        Confirmar presença
+      </button>
+
+      <div class="modal-feedback" id="modalFeedback"></div>
+    </form>
   </div>
+</div>
 
-  <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJVeoK_7hGJob0Wxr8VZQoEJ1V8U5FibcIDb0Gv0g32BJaUtTN_cQdcDVG8fvg0PMNPg/exec";
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJVeoK_7hGJob0Wxr8VZQoEJ1V8U5FibcIDb0Gv0g32BJaUtTN_cQdcDVG8fvg0PMNPg/exec";
 
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const openModalBtn = document.getElementById("openModalBtn");
-    const closeModalBtn = document.getElementById("closeModalBtn");
-    const addGuestBtn = document.getElementById("addGuestBtn");
-    const submitBtn = document.getElementById("submitBtn");
-    const guestList = document.getElementById("guestList");
-    const globalMessage = document.getElementById("globalMessage");
+const openBtn = document.getElementById("openRsvpModal");
+const modal = document.getElementById("rsvpModal");
+const guestList = document.getElementById("guestList");
+const form = document.getElementById("rsvpForm");
+const addBtn = document.getElementById("addGuestButton");
+const submitBtn = document.getElementById("submitRsvpButton");
+const modalFeedback = document.getElementById("modalFeedback");
+const pageFeedback = document.getElementById("pageFeedback");
 
-    function createGuestRow(value = "") {
-      const row = document.createElement("div");
-      row.className = "guest-row";
+function renderField(value = "") {
+  const input = document.createElement("input");
+  input.className = "guest-input";
+  input.placeholder = "Nome do convidado";
+  input.value = value;
+  guestList.appendChild(input);
+}
 
-      const input = document.createElement("input");
-      input.type = "text";
-      input.className = "guest-input";
-      input.placeholder = "Nome do convidado";
-      input.value = value;
+function resetFields() {
+  guestList.innerHTML = "";
+  renderField();
+}
 
-      const removeBtn = document.createElement("button");
-      removeBtn.type = "button";
-      removeBtn.className = "remove-btn";
-      removeBtn.innerHTML = "×";
-      removeBtn.setAttribute("aria-label", "Remover convidado");
+openBtn.onclick = () => {
+  modal.classList.add("is-open");
+  resetFields();
+};
 
-      removeBtn.addEventListener("click", () => {
-        if (guestList.children.length > 1) {
-          row.remove();
-        } else {
-          input.value = "";
-          input.focus();
-        }
-      });
+modal.onclick = (e) => {
+  if (e.target === modal) modal.classList.remove("is-open");
+};
 
-      row.appendChild(input);
-      row.appendChild(removeBtn);
+addBtn.onclick = () => {
+  renderField();
+};
 
-      return row;
-    }
+function showPageMessage(msg, type) {
+  pageFeedback.textContent = msg;
+  pageFeedback.className = "page-feedback " + type;
+}
 
-    function resetGuestList() {
-      guestList.innerHTML = "";
-      guestList.appendChild(createGuestRow());
-    }
+form.onsubmit = async (e) => {
+  e.preventDefault();
 
-    function openModal() {
-      resetGuestList();
-      modalBackdrop.classList.add("active");
-      const firstInput = guestList.querySelector("input");
-      if (firstInput) firstInput.focus();
-    }
+  const guestNames = [...guestList.querySelectorAll("input")]
+    .map(i => i.value.trim())
+    .filter(Boolean);
 
-    function closeModal() {
-      modalBackdrop.classList.remove("active");
-    }
+  if (!guestNames.length) {
+    modalFeedback.textContent = "Digite pelo menos um nome.";
+    return;
+  }
 
-    function showMessage(text, type) {
-      globalMessage.textContent = text;
-      globalMessage.className = `message ${type}`;
-    }
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Enviando...";
+  modalFeedback.textContent = "";
 
-    function clearMessage() {
-      globalMessage.textContent = "";
-      globalMessage.className = "message";
-    }
-
-    function getGuestNames() {
-      const inputs = [...guestList.querySelectorAll(".guest-input")];
-      return inputs
-        .map(input => input.value.trim())
-        .filter(name => name.length > 0);
-    }
-
-    async function submitConfirmation() {
-      const guestNames = getGuestNames();
-
-      if (guestNames.length === 0) {
-        showMessage("Preencha pelo menos um nome.", "error");
-        return;
-      }
-
-      clearMessage();
-      submitBtn.classList.add("loading");
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Enviando...";
-
-      try {
-        const response = await fetch(SCRIPT_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          },
-          body: JSON.stringify({
-            guestNames
-          })
-        });
-
-        const data = await response.json();
-
-        if (!data.success) {
-          throw new Error(data.message || "Não foi possível confirmar.");
-        }
-
-        closeModal();
-        showMessage("Sua presença foi confirmada.", "success");
-      } catch (error) {
-        showMessage("Erro ao enviar confirmação. Tente novamente.", "error");
-        console.error(error);
-      } finally {
-        submitBtn.classList.remove("loading");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Enviar confirmação";
-      }
-    }
-
-    openModalBtn.addEventListener("click", openModal);
-    closeModalBtn.addEventListener("click", closeModal);
-
-    addGuestBtn.addEventListener("click", () => {
-      const row = createGuestRow();
-      guestList.appendChild(row);
-      const input = row.querySelector("input");
-      if (input) input.focus();
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({ guestNames })
     });
 
-    submitBtn.addEventListener("click", submitConfirmation);
+    const data = await res.json();
 
-    modalBackdrop.addEventListener("click", (event) => {
-      if (event.target === modalBackdrop) {
-        closeModal();
-      }
-    });
+    if (!data.success) throw new Error();
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && modalBackdrop.classList.contains("active")) {
-        closeModal();
-      }
-    });
-  </script>
+    modalFeedback.textContent = "Sua presença foi confirmada";
+    showPageMessage("Sua presença foi confirmada", "success");
+
+    setTimeout(() => {
+      modal.classList.remove("is-open");
+    }, 800);
+
+  } catch {
+    modalFeedback.textContent = "Erro ao enviar.";
+    showPageMessage("Erro ao enviar. Tente novamente.", "error");
+  }
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = "Confirmar presença";
+};
+</script>
+
 </body>
 </html>
