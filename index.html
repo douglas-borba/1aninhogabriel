@@ -162,7 +162,16 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-      50% { box-shadow: 0 14px 30px rgba(122,142,127,.14); }
+
+    @keyframes ctaBreath {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 24px rgba(122, 142, 127, 0.16);
+      }
+      50% {
+        transform: scale(1.04);
+        box-shadow: 0 18px 34px rgba(122, 142, 127, 0.28);
+      }
     }
 
     .top-banner {
@@ -196,9 +205,9 @@
 
     .hero-dino {
       position: absolute;
-      left: -40px; /* mais pra esquerda */
-      top: 20%; /* sobe mais */
-      transform: scale(1.1); /* maior no desktop */
+      left: -40px;
+      top: 20%;
+      transform: scale(1.1);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -225,7 +234,7 @@
       justify-content: center;
       width: 100%;
       position: relative;
-      z-index: 1; /* garante que o texto fique na frente */
+      z-index: 1;
     }
 
     .title-name,
@@ -477,24 +486,26 @@
       width: 100%;
       min-height: 96px;
       padding: 18px 26px;
-      border: 2px dashed rgba(177,188,155,.82);
+      border: 0;
       border-radius: 18px;
-      color: var(--accent);
+      color: #f7f3ef;
       text-decoration: none;
       font-style: italic;
       font-weight: 700;
       font-size: 1.02rem;
       line-height: 1.35;
-      background: rgba(255,255,255,.28);
-      transition: transform .25s ease, background .25s ease;
-      animation: pulseGlow 3.8s ease-in-out infinite;
+      background: linear-gradient(180deg, #b9cfaa 0%, #a8c39a 100%);
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      animation: ctaBreath 2.6s ease-in-out infinite;
       text-align: center;
       overflow: hidden;
+      box-shadow: 0 10px 24px rgba(122, 142, 127, 0.18);
     }
 
     .rsvp a:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.42);
+      transform: translateY(-2px) scale(1.01);
+      filter: brightness(1.02);
+      box-shadow: 0 14px 30px rgba(122, 142, 127, 0.24);
     }
 
     .rsvp a svg {
@@ -504,6 +515,7 @@
       transform: translateY(-50%);
       flex: 0 0 auto;
       z-index: 1;
+      color: #f7f3ef;
     }
 
     .rsvp a span {
@@ -549,7 +561,7 @@
       max-width: 360px;
       width: 100%;
       display: block;
-      transform: translateX(-6px); /* ajuste óptico fino */
+      transform: translateX(-6px);
     }
 
     .bottom-scene {
@@ -772,7 +784,7 @@
 
     @media (max-width: 390px) {
       .rsvp a {
-        animation: pulseGlow 3.8s ease-in-out infinite, ctaFloat 2.8s ease-in-out infinite;
+        animation: ctaBreath 2.6s ease-in-out infinite;
       }
 
       .status-card {
@@ -903,7 +915,7 @@
 
     @media (min-width: 391px) and (max-width: 520px) {
       .rsvp a {
-        animation: pulseGlow 3.8s ease-in-out infinite, ctaFloat 2.8s ease-in-out infinite;
+        animation: ctaBreath 2.6s ease-in-out infinite;
       }
 
       .hero-dino {
@@ -963,6 +975,7 @@
       <span class="bubble b15"></span>
       <span class="bubble b16"></span>
     </div>
+
     <div class="wrap">
       <div class="top-banner fade-up delay-1" aria-hidden="true">
         <img src="bandeiras.png" alt="" />
@@ -987,8 +1000,6 @@
         O tempo voou... e o nosso pequeno já vai completar seu primeiro aninho!<br>
         Queremos celebrar esse momento tão especial com pessoas que fazem parte da nossa história.
       </p>
-
-      
 
       <section class="details fade-up delay-4">
         <article class="detail">
@@ -1094,6 +1105,7 @@
         <p class="status-text">Oba! Nos vemos na festa 🎉</p>
       </div>
     </div>
+
     <div class="footer-credit">desenvolvido pelo papai</div>
   </main>
 
@@ -1263,5 +1275,3 @@
   </script>
 </body>
 </html>
-
-
