@@ -10,13 +10,13 @@
       --text: #6a6958;
       --soft: #b1bc9b;
       --accent: #7a8e7f;
-      --accent-light: #8fa892;
-      --accent-light-hover: #86a188;
       --muted: #847c7c;
       --line: rgba(177, 188, 155, 0.55);
+      --card: rgba(255,255,255,0.34);
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -64,6 +64,7 @@
       overflow: hidden;
       pointer-events: none;
       z-index: 1;
+      opacity: 1;
       height: 100%;
     }
 
@@ -108,12 +109,19 @@
     .b15 { left: 76%; width: 12px; height: 12px; animation-duration: 12s; animation-delay: -4s; }
     .b16 { left: 88%; width: 20px; height: 20px; animation-duration: 16s; animation-delay: -14s; }
 
+    @keyframes bubbleRise {
+      0% { transform: translate3d(0, 0, 0) scale(.82); opacity: 0; }
+      8% { opacity: .5; }
+      50% { transform: translate3d(-10px, -55vh, 0) scale(1.02); opacity: .72; }
+      100% { transform: translate3d(12px, -135vh, 0) scale(1.14); opacity: 0; }
+    }
+
     .wrap {
       max-width: 420px;
-      margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 2;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .fade-up {
@@ -137,13 +145,8 @@
     }
 
     @keyframes floatSoft {
-      0%, 100% { transform: translateY(0) scale(1.1); }
-      50% { transform: translateY(-5px) scale(1.1); }
-    }
-
-    @keyframes floatSoftMobile {
-      0%, 100% { transform: translate(0, -50%) scale(0.8); }
-      50% { transform: translate(0, calc(-50% - 5px)) scale(0.8); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
     @keyframes sway {
@@ -152,24 +155,14 @@
     }
 
     @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 10px 24px rgba(143, 168, 146, 0.18); }
-      50% { box-shadow: 0 16px 34px rgba(143, 168, 146, 0.30); }
-    }
-
-    @keyframes ctaFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
+      0%, 100% { box-shadow: 0 10px 24px rgba(122,142,127,.06); }
+      50% { box-shadow: 0 14px 30px rgba(122,142,127,.14); }
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-
-    @keyframes bubbleRise {
-      0% { transform: translate3d(0, 0, 0) scale(.82); opacity: 0; }
-      8% { opacity: .5; }
-      50% { transform: translate3d(-10px, -55vh, 0) scale(1.02); opacity: .72; }
-      100% { transform: translate3d(12px, -135vh, 0) scale(1.14); opacity: 0; }
+      50% { box-shadow: 0 14px 30px rgba(122,142,127,.14); }
     }
 
     .top-banner {
@@ -203,9 +196,9 @@
 
     .hero-dino {
       position: absolute;
-      left: -40px;
-      top: 20%;
-      transform: scale(1.1);
+      left: -40px; /* mais pra esquerda */
+      top: 20%; /* sobe mais */
+      transform: scale(1.1); /* maior no desktop */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -232,15 +225,13 @@
       justify-content: center;
       width: 100%;
       position: relative;
-      z-index: 1;
+      z-index: 1; /* garante que o texto fique na frente */
     }
 
     .title-name,
     .title-age {
-      color: var(--accent);
-      font-style: italic;
-      line-height: .92;
-      letter-spacing: -.025em;
+      font-size: clamp(2.8rem, 7.2vw, 4.1rem);
+      font-weight: 700;
     }
 
     .title-name {
@@ -316,6 +307,30 @@
       padding: 0 12px;
     }
 
+    .section-rule {
+      margin: 10px auto 22px;
+      width: 100%;
+      max-width: 390px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      color: var(--soft);
+    }
+
+    .section-rule::before,
+    .section-rule::after {
+      content: "";
+      height: 1px;
+      background: repeating-linear-gradient(to right, var(--line), var(--line) 6px, transparent 6px, transparent 12px);
+    }
+
+    .section-rule .heart {
+      font-size: 14px;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+
     .details {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -381,6 +396,34 @@
       max-width: 400px;
     }
 
+    .parking {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      align-items: start;
+      text-align: left;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.45;
+      width: 100%;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .rsvp {
+      width: 100%;
+      max-width: 360px;
+      margin: 24px auto 0;
+    }
+
+    .closing {
+      margin-top: 26px;
+      max-width: 330px;
+      text-align: center;
+    }
+
     .address-title {
       display: inline-flex;
       align-items: center;
@@ -414,6 +457,7 @@
       color: var(--muted);
       font-size: 0.96rem;
       line-height: 1.45;
+      max-width: 360px;
     }
 
     .parking svg,
@@ -433,27 +477,24 @@
       width: 100%;
       min-height: 96px;
       padding: 18px 26px;
-      border: none;
+      border: 2px dashed rgba(177,188,155,.82);
       border-radius: 18px;
-      color: #f7f3ef;
+      color: var(--accent);
       text-decoration: none;
       font-style: italic;
       font-weight: 700;
       font-size: 1.02rem;
       line-height: 1.35;
-      background: var(--accent-light);
-      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+      background: rgba(255,255,255,.28);
+      transition: transform .25s ease, background .25s ease;
       animation: pulseGlow 3.8s ease-in-out infinite;
       text-align: center;
       overflow: hidden;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
     }
 
     .rsvp a:hover {
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 16px 30px rgba(143, 168, 146, 0.38);
-      background: var(--accent-light-hover);
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.42);
     }
 
     .rsvp a svg {
@@ -476,7 +517,6 @@
 
     .closing {
       margin-top: 24px;
-      max-width: 330px;
     }
 
     .closing-text {
@@ -509,7 +549,7 @@
       max-width: 360px;
       width: 100%;
       display: block;
-      transform: translateX(-6px);
+      transform: translateX(-6px); /* ajuste óptico fino */
     }
 
     .bottom-scene {
@@ -541,6 +581,7 @@
       font-style: italic;
       margin-top: 8px;
       margin-bottom: 6px;
+      position: static;
     }
 
     .modal-overlay {
@@ -705,6 +746,13 @@
     }
 
     @media (max-width: 390px) {
+      .hero-dino {
+        left: -16px;
+        top: 58%;
+        transform: translate(0, -50%) scale(0.8);
+        opacity: 0.34;
+      }
+
       .wrap {
         padding-left: 18px;
         padding-right: 18px;
@@ -724,7 +772,6 @@
         top: 58%;
         transform: translate(0, -50%) scale(0.8);
         opacity: 0.34;
-        animation: floatSoftMobile 4.8s ease-in-out infinite;
       }
 
       .hero-dino img {
@@ -782,6 +829,7 @@
 
       .parking {
         grid-template-columns: 24px 1fr;
+        width: 100%;
         max-width: 320px;
       }
 
@@ -789,7 +837,7 @@
         min-height: 88px;
         padding: 16px 14px;
         font-size: .98rem;
-        animation: pulseGlow 3.8s ease-in-out infinite, ctaFloat 2.8s ease-in-out infinite;
+        text-align: center;
       }
 
       .rsvp a svg {
@@ -817,15 +865,34 @@
         top: 57%;
         transform: translate(0, -50%) scale(0.84);
         opacity: 0.36;
-        animation: floatSoftMobile 4.8s ease-in-out infinite;
       }
 
       .hero-dino img {
         max-width: 102px;
       }
+    }
 
-      .rsvp a {
-        animation: pulseGlow 3.8s ease-in-out infinite, ctaFloat 2.8s ease-in-out infinite;
+    @media (min-width: 391px) and (max-width: 520px) {
+      .hero-dino {
+        left: 6px;
+        top: 57%;
+        transform: translate(0, -50%) scale(0.76);
+        opacity: 0.35;
+      }
+
+      .hero-dino img {
+        max-width: 90px;
+      }
+    }
+
+    @media (min-width: 391px) and (max-width: 520px) {
+      .hero-dino {
+        transform: translate(-128%, -50%) scale(0.9);
+        opacity: 0.48;
+      }
+
+      .hero-dino img {
+        max-width: 100px;
       }
     }
   </style>
@@ -850,7 +917,6 @@
       <span class="bubble b15"></span>
       <span class="bubble b16"></span>
     </div>
-
     <div class="wrap">
       <div class="top-banner fade-up delay-1" aria-hidden="true">
         <img src="bandeiras.png" alt="" />
@@ -875,6 +941,8 @@
         O tempo voou... e o nosso pequeno já vai completar seu primeiro aninho!<br>
         Queremos celebrar esse momento tão especial com pessoas que fazem parte da nossa história.
       </p>
+
+      
 
       <section class="details fade-up delay-4">
         <article class="detail">
@@ -945,9 +1013,7 @@
       <section class="bottom-scene" aria-hidden="true">
         <img src="rodape.png" alt="" />
       </section>
-
       <div class="footer-space"></div>
-      <div class="footer-credit">desenvolvido pelo papai</div>
     </div>
 
     <div class="modal-overlay" id="rsvpModal" aria-hidden="true">
@@ -968,6 +1034,21 @@
         </form>
       </div>
     </div>
+
+    <div class="modal-overlay" id="loadingModal" aria-hidden="true">
+      <div class="modal-card status-card" role="dialog" aria-modal="true">
+        <div class="status-icon">⏳</div>
+        <p class="status-text">Aguarde, estamos confirmando sua presença...</p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="successModal" aria-hidden="true">
+      <div class="modal-card status-card" role="dialog" aria-modal="true">
+        <div class="status-icon">✅</div>
+        <p class="status-text">Oba! Nos vemos na festa 🎉</p>
+      </div>
+    </div>
+    <div class="footer-credit">desenvolvido pelo papai</div>
   </main>
 
   <script>
@@ -976,6 +1057,8 @@
     const openRsvpModalButton = document.getElementById("openRsvpModal");
     const closeRsvpModalButton = document.getElementById("closeRsvpModal");
     const rsvpModal = document.getElementById("rsvpModal");
+    const loadingModal = document.getElementById("loadingModal");
+    const successModal = document.getElementById("successModal");
     const guestList = document.getElementById("guestList");
     const addGuestButton = document.getElementById("addGuestButton");
     const rsvpForm = document.getElementById("rsvpForm");
@@ -1009,6 +1092,7 @@
       rsvpModal.classList.add("is-open");
       rsvpModal.setAttribute("aria-hidden", "false");
       if (!guestList.children.length) resetGuestFields();
+      modalFeedback.textContent = "";
       const firstInput = guestList.querySelector("input");
       if (firstInput) setTimeout(() => firstInput.focus(), 50);
     }
@@ -1017,6 +1101,26 @@
       rsvpModal.classList.remove("is-open");
       rsvpModal.setAttribute("aria-hidden", "true");
       modalFeedback.textContent = "";
+    }
+
+    function openLoadingModal() {
+      loadingModal.classList.add("is-open");
+      loadingModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeLoadingModal() {
+      loadingModal.classList.remove("is-open");
+      loadingModal.setAttribute("aria-hidden", "true");
+    }
+
+    function openSuccessModal() {
+      successModal.classList.add("is-open");
+      successModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeSuccessModal() {
+      successModal.classList.remove("is-open");
+      successModal.setAttribute("aria-hidden", "true");
     }
 
     openRsvpModalButton.addEventListener("click", (event) => {
@@ -1031,8 +1135,10 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && rsvpModal.classList.contains("is-open")) {
-        closeModal();
+      if (event.key === "Escape") {
+        if (rsvpModal.classList.contains("is-open")) closeModal();
+        if (loadingModal.classList.contains("is-open")) closeLoadingModal();
+        if (successModal.classList.contains("is-open")) closeSuccessModal();
       }
     });
 
@@ -1061,7 +1167,8 @@
 
       submitRsvpButton.disabled = true;
       submitRsvpButton.classList.add("is-loading");
-      modalFeedback.textContent = "Aguarde, estamos confirmando sua presença...";
+      closeModal();
+      openLoadingModal();
 
       try {
         const response = await fetch(APPS_SCRIPT_URL, {
@@ -1088,11 +1195,17 @@
           throw new Error(result.message || "Falha ao enviar confirmação.");
         }
 
-        modalFeedback.textContent = "Oba! Nos vemos na festa 🎉";
+        closeLoadingModal();
+        openSuccessModal();
         rsvpForm.reset();
         resetGuestFields();
-        setTimeout(closeModal, 1800);
+
+        setTimeout(() => {
+          closeSuccessModal();
+        }, 2000);
       } catch (error) {
+        closeLoadingModal();
+        openModal();
         modalFeedback.textContent = "Não foi possível enviar agora. Tente novamente.";
       } finally {
         submitRsvpButton.disabled = false;
@@ -1104,3 +1217,4 @@
   </script>
 </body>
 </html>
+
