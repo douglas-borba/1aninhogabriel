@@ -8,10 +8,15 @@
   <meta property="og:title" content="Gabriel faz 1 aninho! 🎉" />
   <meta property="og:description" content="Você foi convidado para um momento muito especial 💚" />
   <meta property="og:image" content="https://www.gabrielfaz1aninho.com/preview.jpg" />
-  <meta property="og:url" content="https://www.gabrielfaz1aninho.com" />
+  <meta property="og:image:secure_url" content="https://www.gabrielfaz1aninho.com/preview.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://www.gabrielfaz1aninho.com/" />
   <meta property="og:type" content="website" />
-  <!-- Opcional (melhora compatibilidade) -->
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:locale" content="pt_BR" />
+
+<meta name="twitter:card" content="summary_large_image" />
   <style>
     :root {
       --bg: #f7f3ef;
@@ -597,17 +602,7 @@
       margin-bottom: 14px;
     }
     .guest-field {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .guest-index {
-      width: 28px;
-      flex: 0 0 28px;
-      text-align: center;
-      color: var(--soft);
-      font-weight: 700;
-      font-size: 0.95rem;
+      display: block;
     }
     .guest-input {
       width: 100%;
@@ -1027,7 +1022,6 @@
       const wrapper = document.createElement("div");
       wrapper.className = "guest-field";
       wrapper.innerHTML = `
-        <div class="guest-index">${index + 1}</div>
         <input
           class="guest-input"
           type="text"
