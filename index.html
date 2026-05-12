@@ -932,16 +932,7 @@
           Bourbon Wallig e você pode estacionar por lá.
         </div>
       </section>
-      <section class="rsvp fade-up delay-5">
-        <a href="#" id="openRsvpModal" role="button" aria-haspopup="dialog" aria-controls="rsvpModal">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-            <path d="m4 7 8 6 8-6"></path>
-          </svg>
-          <span>clique aqui e confirme sua presença até o dia 11/05</span>
-        </a>
-      </section>
-      <section class="closing fade-up delay-6">
+<section class="closing fade-up delay-6">
         <p class="closing-text">Sua presença vai deixar esse dia ainda mais especial!</p>
         <div class="signature-lead">Com carinho,</div>
         <div class="signature-name">Papais do Gabriel</div>
@@ -951,31 +942,7 @@
       </section>
       <div class="footer-space"></div>
     </div>
-    <div class="modal-overlay" id="rsvpModal" aria-hidden="true">
-      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button class="modal-close" id="closeRsvpModal" aria-label="Fechar">×</button>
-        <h2 class="modal-title" id="modalTitle">Confirmar presença</h2>
-        <p class="modal-subtitle">Adicione o nome de cada convidado que vai participar da festa.</p>
-        <form id="rsvpForm">
-          <div class="guest-list" id="guestList"></div>
-          <div class="modal-actions">
-            <button type="button" class="add-guest" id="addGuestButton">+ Adicionar outro convidado</button>
-            <button type="submit" class="submit-rsvp" id="submitRsvpButton">Confirmar presença</button>
-          </div>
-          <div class="modal-feedback" id="modalFeedback"></div>
-        </form>
-      </div>
-    </div>
-    <div class="modal-overlay" id="loadingModal" aria-hidden="true">
-      <div class="modal-card status-card" role="dialog" aria-modal="true">
-        <div class="status-icon">⏳</div>
-        <p class="status-text">Aguarde, estamos confirmando sua presença...</p>
-      </div>
-    </div>
-    <div class="modal-overlay" id="successModal" aria-hidden="true">
-      <div class="modal-card status-card" role="dialog" aria-modal="true">
-        <div class="status-icon">✅</div>
-        <p class="status-text">Oba! Nos vemos na festa 🎉</p>
+<p class="status-text">Oba! Nos vemos na festa 🎉</p>
       </div>
     </div>
     <div class="footer-credit">desenvolvido pelo papai</div>
@@ -1006,49 +973,7 @@
       window.__resetOverlay = resetOverlay;
     })();
     /* ──────────────────────────────────────────────── */
-
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZF08KjOqbNKa61A7CHk9lQq3Xey0amTbSQxYhB9a0CZuggCRuw5Moyc-yUrQ6bthT4Q/exec";
-    const openRsvpModalButton = document.getElementById("openRsvpModal");
-    const closeRsvpModalButton = document.getElementById("closeRsvpModal");
-    const rsvpModal = document.getElementById("rsvpModal");
-    const loadingModal = document.getElementById("loadingModal");
-    const successModal = document.getElementById("successModal");
-    const guestList = document.getElementById("guestList");
-    const addGuestButton = document.getElementById("addGuestButton");
-    const rsvpForm = document.getElementById("rsvpForm");
-    const submitRsvpButton = document.getElementById("submitRsvpButton");
-    const modalFeedback = document.getElementById("modalFeedback");
-    function renderGuestField(index, value = "") {
-      const wrapper = document.createElement("div");
-      wrapper.className = "guest-field";
-      wrapper.innerHTML = `
-        <input
-          class="guest-input"
-          type="text"
-          name="guest-${index + 1}"
-          placeholder="Nome do convidado"
-          value="${value.replace(/"/g, '&quot;')}"
-          ${index === 0 ? "required" : ""}
-        />
-      `;
-      guestList.appendChild(wrapper);
-      const input = wrapper.querySelector('input');
-      input.addEventListener('focus', function () {
-        setTimeout(function () {
-          input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 320);
-      });
-    }
-    function resetGuestFields() {
-      guestList.innerHTML = "";
-      renderGuestField(0);
-      modalFeedback.textContent = "";
-    }
-    function openModal() {
-      rsvpModal.classList.add("is-open");
-      rsvpModal.setAttribute("aria-hidden", "false");
-      if (!guestList.children.length) resetGuestFields();
-      modalFeedback.textContent = "";
+modalFeedback.textContent = "";
       const firstInput = guestList.querySelector("input");
       if (firstInput) setTimeout(() => firstInput.focus(), 50);
       if (window.__syncOverlay) setTimeout(window.__syncOverlay, 80);
